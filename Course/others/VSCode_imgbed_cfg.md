@@ -62,13 +62,4 @@ ${mdFileName}-${date}-${fileName}${extName}
 ![VSCode_imgbed_cfg-2026-02-20-20260220204847](https://peiyangrobot-doc-1405234710.cos.ap-beijing.myqcloud.com/Course/others/VSCode_imgbed_cfg-2026-02-20-20260220204847.png)且右下角会有如上所示的插入成功提示，此时在markdown预览中也可以看见相应的图片。  
 
 需要注意的是，当前此插件只能进行上传，不能想软件本体一样，对上传至图床的文件进行修改。所以，如果在编辑过程中，传错了图片，请联系图床的管理员进行删除，以避免产生不必要的开销。
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-
-import { 
-  mem1, 
-} from '../../public/member_list/members'
-</script>
-Author
---- 
-<VPTeamMembers size="small" :members="[mem1]" />
+<Author name="XiaWu" />

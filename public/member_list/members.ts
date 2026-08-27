@@ -1,5 +1,5 @@
 // electronic
-export const mem1 = {
+export const XiaWu = {
   avatar: 'https://github.com/vod-x.png',
   name: '夏伍',
   title: 'QQ:2665574681',
@@ -13,7 +13,7 @@ export const mem1 = {
   ]
 }
 
-export const mem2 = {
+export const Lucky = {
   avatar: 'https://github.com/zhou-ee.png',
   name: 'Lucky',
   title: 'QQ:2585102045',
@@ -23,7 +23,7 @@ export const mem2 = {
   ]
 }
 
-export const mem3 =    {
+export const MekCraftLi =    {
         avatar: 'https://github.com/MekCraftLi.png',
         name: 'MekCraftLi',
         title: 'QQ:2653603048',
@@ -33,17 +33,18 @@ export const mem3 =    {
         ]
     }
 
-export const mem4 = {
+export const Pason = {
   avatar: 'https://github.com/Pason666.png',
   name: 'Pason',
   title: 'QQ:110419260',
   desc: '26赛季哨兵电控，25赛季哨兵电控',
   links: [
     { icon: 'github', link: 'https://github.com/Pason666' },
+    { icon: 'dji', link: 'https://bbs.robomaster.com/user/16737991?tab=article' }
   ]
 }
 
-export const mem5 = {
+export const LaoBo = {
         avatar: 'https://github.com/RenshengJi.png',
         name: '人生几何',
         title: '主页: renshengji.github.io',
@@ -54,7 +55,7 @@ export const mem5 = {
     }
 
 
-export const mem6 = {
+export const WangSir = {
   avatar: 'https://github.com/wangonewen.png',
   name: '王艺文',
   title: 'QQ:1825686853',
@@ -64,7 +65,7 @@ export const mem6 = {
   ]
 }
 
-export const mem7 = {
+export const FangDian = {
     avatar: 'https://github.com/SARSfang.png',
     name: '方典',
     title: 'TEL/VX:18720066325',
@@ -76,7 +77,7 @@ export const mem7 = {
     ]
 }
 
-export const mem8 = {
+export const LiuYuQi = {
     avatar: 'https://github.com/cqwdyzm.png',
     name: '刘玉琪',
     title: 'QQ:1652713178 ; wx：cqwdyzm',
@@ -86,7 +87,7 @@ export const mem8 = {
         {icon:'dji', link:'https://bbs.robomaster.com/user/58882?tab=article'}
     ]
 }
-export const mem9 = {
+export const MaoMao = {
         avatar: 'https://github.com/YzmYalier.png',
         name: '杨泽鸣',
         title: 'QQ:2252283758',
@@ -96,3 +97,25 @@ export const mem9 = {
             {icon: 'zhihu', link:'https://www.zhihu.com/people/xfryar'},
         ]
     }
+
+// 成员字典，方便通过名称查找
+export const members = {
+  XiaWu,
+  Lucky,
+  MekCraftLi,
+  Pason,
+  LaoBo,
+  WangSir,
+  FangDian,
+  LiuYuQi,
+  MaoMao,
+}
+
+// 工具函数：通过成员名称获取作者数组
+// 用法: author('Pason') 或 author(['XiaWu', 'Pason'])
+export function author(name: string | string[]) {
+  if (typeof name === 'string') {
+    return [members[name as keyof typeof members]]
+  }
+  return name.map(n => members[n as keyof typeof members])
+}

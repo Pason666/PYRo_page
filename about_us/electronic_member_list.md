@@ -9,24 +9,24 @@ import {
   VPTeamPageSection
 } from 'vitepress/theme'
 import { 
-  mem1, 
-  mem2, 
-  mem3,
-  mem4,
-  mem6,
-  mem8,
+  XiaWu, 
+  Lucky, 
+  MekCraftLi,
+  Pason,
+  WangSir,
+  LiuYuQi,
 } from '../public/member_list/members'
 
 const mainforce = [
-  mem1,
-  mem2,
-  mem3,
-  mem4,
+  XiaWu,
+  Lucky,
+  MekCraftLi,
+  Pason,
 ]
 const substitute = []
 const retirement = [
-  mem6,
-  mem8,
+  WangSir,
+  LiuYuQi,
 ]
 </script>
 
