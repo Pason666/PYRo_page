@@ -122,6 +122,7 @@ export default defineConfig({
         {text: 'VSCode配置图床', link: '/Course/others/VSCode_imgbed_cfg'},
         {text: 'GitHub配置PR_Agent', link: '/Course/others/PR_Agent'},
         {text: 'Git子模块', link: '/Course/others/git_submodules'},
+        {text: '大符', link: '/Course/others/Byjjdf'},
         ]
     },
 
