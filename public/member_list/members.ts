@@ -96,3 +96,13 @@ export const mem9 = {
             {icon: 'zhihu', link:'https://www.zhihu.com/people/xfryar'},
         ]
     }
+
+export const mem10 = {
+        avatar: 'https://github.com/plumery-juicer.png',
+        name: 'Juicer',
+        title: 'QQ:1325626267',
+        desc:'26赛季步兵电控，25赛季步兵机械',
+        links:[
+            {icon:'github', link : 'https://github.com/plumery-juicer'},
+        ]
+    }
