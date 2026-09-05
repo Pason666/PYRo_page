@@ -219,13 +219,4 @@ Course/front-end/intro.md 修改《简介》
 ![clone-2026-02-21-20260221113439](https://peiyangrobot-doc-1405234710.cos.ap-beijing.myqcloud.com/Course/front-end/vitepress/clone-2026-02-21-20260221113439.png)  
 需要等待审核通过才能正式合并进文档站，如果是队内开发，当你提交pr后，请及时提醒队内负责维护此文档站的队员，对你的pr进行审核。
 
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-
-import { 
-  mem1, 
-} from '../../../public/member_list/members'
-</script>
-Author
---- 
-<VPTeamMembers size="small" :members="[mem1]" />
+<Author name="XiaWu" />

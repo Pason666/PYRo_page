@@ -9,13 +9,13 @@ import {
   VPTeamPageSection
 } from 'vitepress/theme'
 import {
-    mem7,
-    mem8
+    FangDian,
+    LiuYuQi
 } from '../public/member_list/members'
 
 const mainforce = []
 const substitute = []
-const retirement = [mem7, mem8]
+const retirement = [FangDian, LiuYuQi]
 </script>
 
 <VPTeamPage>

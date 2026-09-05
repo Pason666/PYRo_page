@@ -27,13 +27,4 @@ CommonMark是一个统一的Markdown文件编写规范，大部分开源项目�
 npm add -D markdown-it-mathjax3@^4
 ```  
 将latex的渲染包导入
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-
-import { 
-  mem1, 
-} from '../../../public/member_list/members'
-</script>
-Author
---- 
-<VPTeamMembers size="small" :members="[mem1]" />
+<Author name="XiaWu" />

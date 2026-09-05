@@ -29,14 +29,4 @@
 
 在项目根目录打开终端，输入以下命令：`git submodule update --init`
 
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-import { mem4 } from '../../public/member_list/members'
-
-const author = [
-  mem4,
-]
-</script>
-Author
----
-<VPTeamMembers size="small" :members="author" />
+<Author name="Pason" />

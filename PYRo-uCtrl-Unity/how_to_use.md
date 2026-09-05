@@ -879,15 +879,4 @@ ModuleName/
 
 ---
 
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-import { mem4 } from '../public/member_list/members'
-
-const author = [
-  mem4,
-]
-</script>
-
-## 作者
-
-<VPTeamMembers size="small" :members="author" />
+<Author name="Pason" />

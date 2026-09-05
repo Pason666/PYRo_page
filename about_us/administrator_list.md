@@ -9,19 +9,19 @@ import {
   VPTeamPageSection
 } from 'vitepress/theme'
 import { 
-  mem1, 
-  mem5,
-  mem6,
-  mem9,
+  XiaWu, 
+  LaoBo,
+  WangSir,
+  MaoMao,
 } from '../public/member_list/members'
 
 const mainforce = [
-  mem1,
-  mem9,
+  XiaWu,
+  MaoMao,
 ]
 const retirement = [
-    mem5,
-    mem6,
+    LaoBo,
+    WangSir,
 ]
 </script>
 
