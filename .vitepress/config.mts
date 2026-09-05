@@ -91,6 +91,7 @@ export default defineConfig({
       //教程侧边栏
        //教程-嵌入式开发
       '/Course/embedded':[
+        { text: '大北洋能量机关', link: '/Course/others/Byjjdf' },
         {text: '返回', link: '/Course/index'},
         {text: '简介', link: '/Course/embedded/intro'},
         {text: '第三方库', collapsed: true, items: [
@@ -121,6 +122,7 @@ export default defineConfig({
         {text: 'VSCode配置图床', link: '/Course/others/VSCode_imgbed_cfg'},
         {text: 'GitHub配置PR_Agent', link: '/Course/others/PR_Agent'},
         {text: 'Git子模块', link: '/Course/others/git_submodules'},
+        {text: '大符', link: '/Course/others/Byjjdf'},
         ]
     },
 
