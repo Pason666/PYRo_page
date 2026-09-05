@@ -23,14 +23,5 @@
 运行中（即网页中圆形“开关”按钮处于绿色开状态）时，不允许更改系统状态，包括颜色，大小符，正反转等。欲改变状态，需关闭。
 
 如图所示，有控制颜色（阵营）的按钮，有控制大小符的按钮，有正反转的按钮，和总开关。这些状态的意义应该无需过多说明。
-<script setup>
-import { VPTeamMembers } from 'vitepress/theme'
-import { mem10 } from '../../public/member_list/members'
 
-const author = [
-  mem10,
-]
-</script>
-Author
----
-<VPTeamMembers size="small" :members="author" />
+<Author name="Juicer" />
