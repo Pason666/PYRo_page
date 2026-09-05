@@ -91,6 +91,7 @@ export default defineConfig({
       //教程侧边栏
        //教程-嵌入式开发
       '/Course/embedded':[
+        { text: '大北洋能量机关', link: '/Course/others/Byjjdf' },
         {text: '返回', link: '/Course/index'},
         {text: '简介', link: '/Course/embedded/intro'},
         {text: '第三方库', collapsed: true, items: [
