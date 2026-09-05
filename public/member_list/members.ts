@@ -98,6 +98,16 @@ export const MaoMao = {
         ]
     }
 
+export const Juicer = {
+    avatar: 'https://github.com/plumery-juicer.png',
+    name: 'Juicer',
+    title: 'QQ:1325626267',
+    desc:'26赛季电控，25赛季机械',
+    links:[
+        {icon:'github', link : 'https://github.com/plumery-juicer'},
+    ]
+}
+
 // 成员字典，方便通过名称查找
 export const members = {
   XiaWu,
@@ -109,6 +119,7 @@ export const members = {
   FangDian,
   LiuYuQi,
   MaoMao,
+  Juicer,
 }
 
 // 工具函数：通过成员名称获取作者数组
