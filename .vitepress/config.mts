@@ -113,7 +113,8 @@ export default defineConfig({
           {text: '拉取与部署', link: '/Course/front-end/vitepress/clone'},
           {text: '编写Markdown文档', link: '/Course/front-end/vitepress/markdown'},
           {text: 'vitepress默认主题配置', link: '/Course/front-end/vitepress/default_theme'},
-        ]},
+        
+          { text: 'VScode文档站开发教程', link: '/Course/front-end/vitepress/VSCode_plugin' },]},
       ],
       //教程-其他
       '/Course/others': [
