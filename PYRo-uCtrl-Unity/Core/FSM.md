@@ -273,5 +273,37 @@ void loop() {
     Delay(10);
 }
 ```
+这里我们用`ctx.rc_switch_enable  =! ctx.rc_switch_enable`来模拟每次的循环,将延时函数放在main中,在main中做出实现：
+```c++
+int main()
+{
+    setup();
+    while (true)
+    {
+        ctx.rc_switch_enable = !ctx.rc_switch_enable;
+        loop();
+        // 模拟系统延时
+        Sleep(1000);
+    }
+
+}
+```
+可以得到控制台输出：
+```
+>>> Enter Active: System Ready
+>>> Enter Passive: Motors OFF
+>>> Enter Active: System Ready
+>>> Enter Passive: Motors OFF
+>>> Enter Active: System Ready
+>>> Enter Passive: Motors OFF
+>>> Enter Active: System Ready
+>>> Enter Passive: Motors OFF
+>>> Enter Active: System Ready
+>>> Enter Passive: Motors OFF
+>>> Enter Active: System Ready
+
+```
+可以看到代码成功实现了我们预期的状态循环
+
 
 ## Q&A
