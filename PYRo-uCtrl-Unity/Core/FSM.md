@@ -277,7 +277,7 @@ void loop() {
 我们也可以在子状态执行中调用`request_switch()`函数来进行状态的切换
 :::
 
-这里我们用`ctx.rc_switch_enable  =! ctx.rc_switch_enable`来模拟每次的循环,将延时函数放在main中,在main中做出实现：
+这里我们用`ctx.rc_switch_enable  =! ctx.rc_switch_enable`来模拟每次循环的控制,将延时函数放在main中,在main中做出实现：
 ```c++
 int main()
 {
