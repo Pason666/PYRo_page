@@ -17,7 +17,7 @@ export const Lucky = {
   avatar: 'https://github.com/zhou-ee.png',
   name: 'Lucky',
   title: 'QQ:2585102045',
-  desc: '26赛季英雄电控，25赛季英雄电控',
+  desc: '27赛季项目管理，26赛季英雄电控，25赛季英雄电控',
   links: [
     { icon: 'github', link: 'https://github.com/zhou-ee' },
   ]
@@ -37,7 +37,7 @@ export const Pason = {
   avatar: 'https://github.com/Pason666.png',
   name: 'Pason',
   title: 'QQ:110419260',
-  desc: '26赛季哨兵电控，25赛季哨兵电控',
+  desc: '27赛季重装电控，26赛季哨兵电控，25赛季哨兵电控',
   links: [
     { icon: 'github', link: 'https://github.com/Pason666' },
     { icon: 'dji', link: 'https://bbs.robomaster.com/user/16737991?tab=article' }
@@ -102,7 +102,7 @@ export const Juicer = {
     avatar: 'https://github.com/plumery-juicer.png',
     name: 'Juicer',
     title: 'QQ:1325626267',
-    desc:'26赛季电控，25赛季机械',
+    desc:'27赛季硬件，26赛季电控，25赛季机械',
     links:[
         {icon:'github', link : 'https://github.com/plumery-juicer'},
     ]
