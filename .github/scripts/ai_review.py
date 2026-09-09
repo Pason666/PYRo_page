@@ -2,7 +2,7 @@ import sys, os
 from anthropic import Anthropic
 
 client = Anthropic(
-    api_key=os.environ[“GPT_API_KEY”],
+    api_key=os.environ[“CLAUDE_API_KEY”],
     base_url=”https://api.hanhegufei.online”
 )
 
