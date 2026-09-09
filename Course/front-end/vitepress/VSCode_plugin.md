@@ -162,3 +162,7 @@ PR是Pull requests的简写。交PR类似交作业，交上去之后上游仓库
 Lucky没学会🐷，你学会了吗？
 
 <Author name="Pason" />
+
+
+再次测试claude模型能不能用
+
