@@ -1,9 +1,9 @@
 import sys
 import os
-from openai import OpenAI
+from zhipuai import ZhipuAI
 
-client = OpenAI(
-    api_key=os.environ["GPT_API_KEY"],
+client = ZhipuAI(
+    api_key=os.environ["GLM_API_KEY"],
     base_url="https://api.hanhegufei.online"
 )
 
@@ -20,7 +20,7 @@ system_prompt = """你是一位严谨的技术文档审查专家。该仓库是�
 
 try:
     response = client.chat.completions.create(
-        model="gpt-5.6-luna",
+        model="glm-4-flash",
         temperature=0.0,
         max_tokens=8192,
         messages=[
