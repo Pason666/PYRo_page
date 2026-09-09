@@ -8,49 +8,8 @@
 
 > 目标：深入理解 `module_base_t` 的架构设计、CRTP单例、HFSM 状态机机制及内部运行原理。
 
-### 1. 架构概览
 
-```
-┌─────────────── Application Layer ────────────────┐
-│  init            ┌  - command thread             │
-│  - new cmd       │   ┌─────────────────────┐     │
-│  - new deps      │   │ - 外部msg → cmd 转换 │     │
-│  - configure()   │   │ - set_command() 下发│     │
-│  - xtaskcreate()─┘   └─────────────────────┘     │
-│  - start()┐                                      │
-└────────────────────┬─────────────────────────────┘
-            │        │
-┌───────────┬────────▼── Module Layer ─────────────┐
-│  module_base_t<Derived, ModuleParams>            │
-│  _run_loop_impl()                                │
-│  ┌─────────────────────────────────────────────┐ │
-│  │ 环形缓冲区 (CMD_BUF_SIZE=16)                 │ │
-│  │ _update_command() → _current_cmd            │ │
-│  │ _update_feedback() → 传感器/电机数据刷新     │ │
-│  │ _fsm_execute()    → 状态机调度 ┐             │ │   
-│  │                       (_current_cmd→_ctx)   │ │
-│  └─────────────────────────────────────────────┘ │
-│  每 1ms 循环执行一次 (FreeRTOS 任务)              │
-└──────────────────────────────────────────────────┘
-```
-
-| 阶段   | 调用的方法                                          | 说明                                   |
-| ------ | --------------------------------------------------- | -------------------------------------- |
-| 创建   | `instance()`                                        | CRTP 单例，首次调用时构造              |
-| 配置   | `configure(deps)`                                   | 注入依赖，必须在 `start()` 前调用      |
-| 启动   | `start()`                                           | 创建 FreeRTOS 任务，自动调用 `_init()` |
-| 运行时 | `set_command(cmd)`                                  | 线程安全写入，环形缓冲区 FIFO          |
-| 循环   | `_run_loop_impl`                                    | 1ms 周期                               |
-
-
-核心循环（`_run_loop_impl`）以 1ms 为周期，顺序执行：
-1. `_update_command()` — 从环形缓冲区取出最新命令（Zero-Order Hold）
-2. `_update_feedback()` — 刷新传感器、电机反馈数据
-3. `_fsm_execute()` — 根据命令模式调度状态机
-
-------
-
-### 2. CRTP 单例模式
+### 1. CRTP 单例模式
  
 CRTP：奇异递归模板模式，基类拿派生类作为模板参数 `template<class Derived> class Base`。
 CRTP 单例好处：
@@ -110,8 +69,9 @@ public:
 ```
 
 ```cpp
-//使用
+//使用方法
 MyDriver::instance().do_work();
+
 auto& drv = MyDriver::instance();
 ```
 **关键点**
@@ -131,7 +91,7 @@ static Derived inst 是函数内局部静态变量：
 基类把拷贝移动全部 delete，派生类会继承这个限制，不能拷贝单例对象。
 
 
-### 3. HFSM 状态机模式
+### 2. HFSM 状态机模式
 
 每个模块使用二级层级状态机。`fsm_t` 继承自 `state_t`，这意味着一个状态机本身也是一个状态，可以嵌套到父状态机中。
 
@@ -201,22 +161,65 @@ void motor_ctrl_t::_fsm_execute()
     _main_fsm.execute(this);
 }
 ```
-***app层传入的cmd在此处传入到_ctx中***
+
 
 ------
-### 2. 模块生命周期详解
+### 3. 架构概览
 
-模块自带一个内部任务类 `module_task_t : task_base_t`（`pyro_module_base.h:111-124`），构造函数里创建：
-
-```cpp
-module_base_t(const char *name = "module_task",
-              uint16_t init_stack = 512,
-              uint16_t loop_stack = 256,
-              task_base_t::priority_t priority = task_base_t::priority_t::HIGH);
 ```
-（`pyro_module_base.h:89-93`）
+┌─────────────── Application Layer ────────────────┐
+│  init            ┌  - command thread             │
+│  - new cmd       │   ┌─────────────────────┐     │
+│  - new deps      │   │ - 外部msg → cmd 转换 │     │
+│  - configure()   │   │ - set_command() 下发│     │
+│  - xtaskcreate()─┘   └─────────────────────┘     │
+│  - start()┐                                      │
+└────────────────────┬─────────────────────────────┘
+            │        │
+┌───────────┬────────▼── Module Layer ─────────────┐
+│  module_base_t<Derived, ModuleParams>            │
+│  _run_loop_impl()                                │
+│  ┌─────────────────────────────────────────────┐ │
+│  │ 环形缓冲区 (CMD_BUF_SIZE=16)                 │ │
+│  │ _update_command() → _current_cmd            │ │
+│  │ _update_feedback() → 传感器/电机数据刷新     │ │
+│  │ _fsm_execute()    → 状态机调度               │ │
+│  └─────────────────────────────────────────────┘ │
+│  每 1ms 循环执行一次 (FreeRTOS 任务)              │
+└──────────────────────────────────────────────────┘
+```
 
-`start()` 之后发生的事（结合 `pyro_task.cpp:36-90` 确认）：
+| 阶段   | 调用的方法                                          | 说明                                   |
+| ------ | --------------------------------------------------- | -------------------------------------- |
+| 创建   | `instance()`                                        | CRTP 单例，首次调用时构造              |
+| 配置   | `configure(deps)`                                   | 注入依赖，必须在 `start()` 前调用      |
+| 启动   | `start()`                                           | 创建 FreeRTOS 任务，自动调用 `_init()` |
+| 运行时 | `set_command(cmd)`                                  | 线程安全写入，环形缓冲区 FIFO          |
+| 循环   | `_run_loop_impl`                                    | 1ms 周期                               |
+
+
+核心循环（`_run_loop_impl`）以 1ms 为周期，顺序执行：
+1. `_update_command()` — 从环形缓冲区取出最新命令（Zero-Order Hold）
+2. `_update_feedback()` — 刷新传感器、电机反馈数据
+3. `_fsm_execute()` — 根据命令模式调度状态机
+
+#### 数据传输链路
+```
+遥控器等外部消息
+    ↓             read msg              ┐
+  cmd_ptr                               |app 层
+    ↓             set_command           ┘
+  环形缓冲区 
+    ↓              get_command          ┐
+ _current_cmd                           |module 层    
+    ↓             fsm_execute赋值       ┘
+ _ctx.cmd
+                 
+```
+
+
+------
+### 4. 模块生命周期详解
 
 ```
 start()
