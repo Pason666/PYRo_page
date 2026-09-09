@@ -1,4 +1,4 @@
-name: AI Code Review (DeepSeek)
+name: AI Code Review (GPT-5.6-Luna)
 
 on:
   pull_request_target:        

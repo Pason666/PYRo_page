@@ -1,10 +1,9 @@
 import sys, os
 from openai import OpenAI
 
-# DeepSeek 兼容 OpenAI SDK，只需配置 base_url 和 api_key
 client = OpenAI(
-    api_key=os.environ["DEEPSEEK_API_KEY"],
-    base_url="https://api.deepseek.com"
+    api_key=os.environ["GPT_API_KEY"],
+    base_url="https://api.hanhegufei.online"
 )
 
 diff_file = sys.argv[1]
@@ -12,7 +11,7 @@ with open(diff_file, "r") as f:
     diff_content = f.read()
 
 response = client.chat.completions.create(
-    model="deepseek-v4-pro",
+    model="gpt-5.6-luna",
     messages=[
         {
             "role": "system",
