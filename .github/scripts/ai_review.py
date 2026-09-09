@@ -3,8 +3,8 @@ import os
 from openai import OpenAI
 
 client = OpenAI(
-    api_key=os.environ["TJU_API_KEY"],
-    base_url="https://ai.tju.edu.cn/api/v3/"
+    api_key=os.environ["GPT_API_KEY"],
+    base_url="https://api.hanhegufei.online"
 )
 
 diff_file = sys.argv[1]
@@ -20,7 +20,7 @@ system_prompt = """你是一位严谨的技术文档审查专家。该仓库是�
 
 try:
     response = client.chat.completions.create(
-        model="tju-llm",
+        model="gpt-5.6-terra",
         temperature=0.0,
         max_tokens=8192,
         messages=[
